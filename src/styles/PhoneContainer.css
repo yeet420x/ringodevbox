@@ -1,0 +1,40 @@
+.phone-container {
+  background-color: #1f2937;
+  border-radius: 30px 30px 54px 54px;
+  padding: 18px;
+  box-shadow: 
+    inset 0 0 18px rgba(0, 0, 0, 0.5),
+    0 6px 18px rgba(0, 0, 0, 0.3);
+  width: 288px; /* 240px * 1.2 */
+  transform: scale(1.2);
+  transform-origin: top center;
+}
+
+.phone-frame {
+  background: linear-gradient(145deg, #2c3444, #1a232f);
+  border-radius: 20px 20px 40px 40px;
+  padding: 20px 15px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.speaker {
+  width: 35px;
+  height: 4px;
+  background: linear-gradient(90deg, #1a1a1a, #333333, #1a1a1a);
+  border-radius: 2px;
+  margin: 5px 0 10px;
+  position: relative;
+}
+
+.nokia-brand {
+  font-family: 'Arial', sans-serif;
+  color: #d4d4d4;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+} 
