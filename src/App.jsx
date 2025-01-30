@@ -7,21 +7,17 @@ function App() {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   const handleLoaderComplete = () => {
+    console.log("Loading complete"); // Debug log
     setIsInitialLoading(false);
   };
 
   return (
     <div className="app-wrapper">
-      {isInitialLoading && (
-        <div className="loader-container">
-          <InitialLoader onComplete={handleLoaderComplete} />
-        </div>
+      {isInitialLoading ? (
+        <InitialLoader onComplete={handleLoaderComplete} />
+      ) : (
+        <PhoneContainer />
       )}
-      <div className={`phone-wrapper ${isInitialLoading ? 'hidden' : ''}`}>
-        <PhoneContainer>
-          {/* Your existing phone content */}
-        </PhoneContainer>
-      </div>
     </div>
   );
 }

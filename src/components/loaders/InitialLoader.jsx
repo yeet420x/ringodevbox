@@ -4,64 +4,46 @@ import '../../styles/InitialLoader.css';
 function InitialLoader({ onComplete }) {
   const [snake, setSnake] = useState(Array.from({ length: 25 }, () => ({ x: 0, y: 0 })));
   const [currentPathIndex, setCurrentPathIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Start loading timeout immediately
-    const loadingTimeout = setTimeout(() => {
-      setIsLoading(false);
-      onComplete(); // Ensure onComplete is called
-    }, 10000);
-
-    // Only run snake animation if still loading
-    if (!isLoading) {
-      return () => clearTimeout(loadingTimeout);
-    }
+    const timer = setTimeout(() => {
+      onComplete();
+    }, 5000);
 
     const GRID_W = 30;
     const GRID_H = 20;
     const borderPattern = [];
     
-    // Top edge
+    // Create border pattern
     for (let x = 4; x < GRID_W - 4; x++) borderPattern.push({ x, y: 4 });
-    // Right edge
     for (let y = 4; y < GRID_H - 4; y++) borderPattern.push({ x: GRID_W - 5, y });
-    // Bottom edge
     for (let x = GRID_W - 5; x >= 4; x--) borderPattern.push({ x, y: GRID_H - 5 });
-    // Left edge
     for (let y = GRID_H - 5; y >= 4; y--) borderPattern.push({ x: 4, y });
 
     const moveSnake = () => {
-      if (!isLoading) return; // Stop movement if not loading
-      
-      if (currentPathIndex >= borderPattern.length) {
-        setCurrentPathIndex(0);
-        return;
-      }
-
+      const nextIndex = (currentPathIndex + 1) % borderPattern.length;
       const targetPos = borderPattern[currentPathIndex];
-      const newSnake = [...snake];
-      newSnake.unshift({ x: targetPos.x, y: targetPos.y });
-      newSnake.pop();
-
-      setSnake(newSnake);
-      setCurrentPathIndex(prev => prev + 1);
+      
+      setCurrentPathIndex(nextIndex);
+      setSnake(prevSnake => {
+        const newSnake = [...prevSnake];
+        newSnake.unshift({ x: targetPos.x, y: targetPos.y });
+        newSnake.pop();
+        return newSnake;
+      });
     };
 
     const moveInterval = setInterval(moveSnake, 50);
 
-    // Cleanup function
     return () => {
       clearInterval(moveInterval);
-      clearTimeout(loadingTimeout);
+      clearTimeout(timer);
     };
-  }, [currentPathIndex, snake, onComplete, isLoading]);
-
-  // Don't render if not loading
-  if (!isLoading) return null;
+  }, []); // Empty dependency array
 
   return (
     <div className="initial-loader">
+      <div className="nokia-brand-loader">NOKIA</div>
       <div className="loader-container">
         <div className="loader-grid">
           {snake.map((segment, index) => (
