@@ -6,9 +6,12 @@ import Chart from './menu/Chart';
 import Tokenomics from './menu/Tokenomics';
 import Socials from './menu/Socials';
 import Snake from './menu/Snake';
-import xIcon from '../assets/x.svg';
+import xIcon from '../assets/x.webp';
 import tgIcon from '../assets/tg.svg';
-import dexIcon from '../assets/dexscreener.svg';
+import dexIcon from '../assets/dex.png';
+import buyIcon from '../assets/buy.svg';
+import snakeIcon from '../assets/snake.svg';
+import contractIcon from '../assets/contract.svg';
 
 function Interface() {
   const [activeIndex, setActiveIndex] = useState(() => {
@@ -24,14 +27,13 @@ function Interface() {
   const [battery, setBattery] = useState(3); // Battery level 0-3
 
   const menuItems = [
-    { icon: '📜', label: 'Contract', component: Contract },
-    { icon: '💎', label: 'Buy', component: Buy },
+    { icon: <img src={contractIcon} alt="Contract" className="menu-icon" />, label: 'Contract', component: Contract },
+    { icon:<img src={buyIcon} alt="DexScreener" className="menu-icon" />, label: 'Buy', component: Buy },
     { 
       icon: <img src={dexIcon} alt="DexScreener" className="menu-icon" />, 
       label: 'Chart', 
       component: Chart 
     },
-    { icon: '💰', label: 'Tokenomics', component: Tokenomics },
     { 
       icon: <img src={xIcon} alt="X" className="menu-icon" />, 
       label: 'X', 
@@ -42,7 +44,7 @@ function Interface() {
       label: 'Telegram', 
       component: Socials 
     },
-    { icon: '🎮', label: 'Snake', component: Snake }
+    { icon: <img src={snakeIcon} alt="Snake" className="menu-icon" />, label: 'Snake', component: Snake }
   ];
 
   const handleEscape = () => {
@@ -146,6 +148,36 @@ function Interface() {
     handleKeyDown(event);
   };
 
+  const handleBuyClick = () => {
+    const buyUrl = "https://pump.fun";
+    try {
+      window.location.href = buyUrl;
+    } catch (error) {
+      console.error('Failed to open Buy URL:', error);
+      alert('Please click here to open Buy: ' + buyUrl);
+    }
+  };
+
+  const handleChartClick = () => {
+    const chartUrl = "https://dexscreener.com";
+    try {
+      window.location.href = chartUrl;
+    } catch (error) {
+      console.error('Failed to open Chart URL:', error);
+      alert('Please click here to open Chart: ' + chartUrl);
+    }
+  };
+
+  const handleXClick = () => {
+    const xUrl = "https://x.com/nokiacoin";
+    try {
+      window.location.href = xUrl;
+    } catch (error) {
+      console.error('Failed to open X URL:', error);
+      alert('Please click here to open X: ' + xUrl);
+    }
+  };
+
   if (typingMode) {
     return (
       <div className="nokia-interface">
@@ -227,6 +259,26 @@ function Interface() {
                 <div className="label">{item.label}</div>
               </div>
             ))}
+          </div>
+          <div className="button-container">
+            <button 
+              className="nokia-button" 
+              onClick={handleBuyClick}
+            >
+              Buy
+            </button>
+            <button 
+              className="nokia-button" 
+              onClick={handleChartClick}
+            >
+              Chart
+            </button>
+            <button 
+              className="nokia-button" 
+              onClick={handleXClick}
+            >
+              X
+            </button>
           </div>
         </div>
       </div>

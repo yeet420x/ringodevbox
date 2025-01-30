@@ -2,86 +2,87 @@ import React, { useEffect, useState } from 'react';
 import '../../styles/InitialLoader.css';
 
 function InitialLoader({ onComplete }) {
-  const [snake, setSnake] = useState(Array.from({ length: 25 }, () => ({ x: 0, y: 0 })));
+  const [dots, setDots] = useState(Array.from({ length: 10 }, () => ({ x: 0, y: 0 })));
   const [currentPathIndex, setCurrentPathIndex] = useState(0);
+  const [isGlowing, setIsGlowing] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 5000);
+    // Define the NOKIA letter pattern
+    const letterPattern = [
+      // N
+      { x: 5, y: 5 }, { x: 5, y: 6 }, { x: 5, y: 7 }, { x: 5, y: 8 },
+      { x: 6, y: 6 }, { x: 7, y: 7 },
+      { x: 8, y: 5 }, { x: 8, y: 6 }, { x: 8, y: 7 }, { x: 8, y: 8 },
+      // O
+      { x: 10, y: 5 }, { x: 10, y: 6 }, { x: 10, y: 7 }, { x: 10, y: 8 },
+      { x: 11, y: 5 }, { x: 11, y: 8 },
+      { x: 12, y: 5 }, { x: 12, y: 6 }, { x: 12, y: 7 }, { x: 12, y: 8 },
+      // K
+      { x: 14, y: 5 }, { x: 14, y: 6 }, { x: 14, y: 7 }, { x: 14, y: 8 },
+      { x: 15, y: 6 }, { x: 16, y: 5 }, { x: 16, y: 7 }, { x: 16, y: 8 },
+      // I
+      { x: 18, y: 5 }, { x: 18, y: 6 }, { x: 18, y: 7 }, { x: 18, y: 8 },
+      // A
+      { x: 20, y: 8 }, { x: 20, y: 7 }, { x: 20, y: 6 }, { x: 20, y: 5 },
+      { x: 21, y: 5 }, { x: 22, y: 5 },
+      { x: 22, y: 6 }, { x: 22, y: 7 }, { x: 22, y: 8 },
+      { x: 21, y: 6 }
+    ];
 
-    const GRID_W = 30;
-    const GRID_H = 20;
-    const borderPattern = [];
-    
-    // Create border pattern
-    for (let x = 4; x < GRID_W - 4; x++) borderPattern.push({ x, y: 4 });
-    for (let y = 4; y < GRID_H - 4; y++) borderPattern.push({ x: GRID_W - 5, y });
-    for (let x = GRID_W - 5; x >= 4; x--) borderPattern.push({ x, y: GRID_H - 5 });
-    for (let y = GRID_H - 5; y >= 4; y--) borderPattern.push({ x: 4, y });
-
-    const moveSnake = () => {
-      const nextIndex = (currentPathIndex + 1) % borderPattern.length;
-      const targetPos = borderPattern[currentPathIndex];
-      
-      setCurrentPathIndex(nextIndex);
-      setSnake(prevSnake => {
-        const newSnake = [...prevSnake];
-        newSnake.unshift({ x: targetPos.x, y: targetPos.y });
-        newSnake.pop();
-        return newSnake;
-      });
+    const moveDots = () => {
+      if (currentPathIndex < letterPattern.length) {
+        const targetPos = letterPattern[currentPathIndex];
+        setDots(prevDots => {
+          const newDots = [...prevDots];
+          newDots[currentPathIndex] = { x: targetPos.x, y: targetPos.y };
+          return newDots;
+        });
+        setCurrentPathIndex(prev => prev + 1);
+      } else {
+        // When dots are done, wait 1 second then transform
+        setTimeout(() => {
+          setIsGlowing(true);
+          // Wait 2 more seconds after transformation before completing
+          setTimeout(onComplete, 2000);
+        }, 1000);
+        return true; // Signal to clear the interval
+      }
     };
 
-    const moveInterval = setInterval(moveSnake, 50);
+    const moveInterval = setInterval(() => {
+      if (moveDots()) {
+        clearInterval(moveInterval);
+      }
+    }, 100); // Faster dot movement (changed from 200 to 100)
 
     return () => {
       clearInterval(moveInterval);
-      clearTimeout(timer);
     };
-  }, []); // Empty dependency array
+  }, [currentPathIndex, onComplete]);
 
   return (
     <div className="initial-loader">
-      <div className="nokia-brand-loader">NOKIA</div>
       <div className="loader-container">
         <div className="loader-grid">
-          {snake.map((segment, index) => (
+          {dots.map((dot, index) => (
             <div
               key={index}
-              className={`loader-segment ${index === 0 ? 'head' : 'body'}`}
+              className={`loader-dot ${isGlowing ? 'fade' : ''}`}
               style={{
-                left: `${(segment.x / 30) * 100}%`,
-                top: `${(segment.y / 20) * 100}%`,
-                opacity: Math.max(1 - index / snake.length, 0.8)
+                left: `${(dot.x / 30) * 100}%`,
+                top: `${(dot.y / 20) * 100}%`,
+                transitionDelay: `${index * 0.05}s`
               }}
             />
           ))}
         </div>
-        <div className="loader-content">
-          <div className="loader-gif">
-            <img src="/src/assets/nokia.gif" alt="Loading..." />
-          </div>
-          <div className="nokia-loading-text">
+        <div className={`loader-content ${isGlowing ? 'glow' : ''}`}>
+          <div className="nokia-text">
             <span>N</span>
             <span>O</span>
             <span>K</span>
             <span>I</span>
             <span>A</span>
-            <span>&nbsp;</span>
-            <span>I</span>
-            <span>S</span>
-            <span>&nbsp;</span>
-            <span>L</span>
-            <span>O</span>
-            <span>A</span>
-            <span>D</span>
-            <span>I</span>
-            <span>N</span>
-            <span>G</span>
-            <span>.</span>
-            <span>.</span>
-            <span>.</span>
           </div>
         </div>
       </div>

@@ -1,33 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../../styles/Chart.css';
 
 function Chart({ onBack }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const dexScreenerUrl = "https://dexscreener.com/solana/your-pair-address";
+  const chartUrl = "https://dexscreener.com";
 
-  const handleOpenExternal = () => {
-    window.open(dexScreenerUrl, '_blank');
-  };
+  useEffect(() => {
+    window.open(chartUrl, '_blank');
+  }, []);
 
   return (
     <div className="chart-screen">
-      <div className="chart-container">
-        <iframe
-          src={dexScreenerUrl}
-          title="DEXScreener Chart"
-          className="dex-iframe"
-          onLoad={() => setIsLoading(false)}
-          onError={() => setIsLoading(true)}
-        />
-        {isLoading && (
-          <div className="chart-fallback">
-            <div className="chart-message">Loading chart...</div>
-            <button className="chart-external-btn" onClick={handleOpenExternal}>
-              Open in new tab
-            </button>
-          </div>
-        )}
+      <div className="redirect-container">
+        <div className="redirect-message">
+          Opening Chart...
+        </div>
+        <button 
+          className="redirect-button"
+          onClick={() => window.open(chartUrl, '_blank')}
+        >
+          Click here if it doesn't open automatically
+        </button>
       </div>
       <button className="back-button" onClick={onBack}>Back</button>
     </div>

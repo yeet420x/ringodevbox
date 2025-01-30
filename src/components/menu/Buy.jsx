@@ -1,34 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import '../../styles/Buy.css';
 
 function Buy({ onBack }) {
-  const exchanges = [
-    { name: 'Raydium', url: 'https://raydium.io/swap' },
-    { name: 'Jupiter', url: 'https://jup.ag' },
-    { name: 'Orca', url: 'https://www.orca.so' }
-  ];
+  const buyUrl = "https://pump.fun";
+
+  useEffect(() => {
+    window.open(buyUrl, '_blank');
+  }, []);
 
   return (
-    <div className="menu-screen">
-      <header className="screen-title">Buy</header>
-      <div className="content scrollable">
-        <div className="exchange-list">
-          {exchanges.map((exchange) => (
-            <a 
-              key={exchange.name}
-              href={exchange.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="exchange-item"
-            >
-              {exchange.name}
-            </a>
-          ))}
+    <div className="buy-screen">
+      <div className="redirect-container">
+        <div className="redirect-message">
+          Opening Buy...
         </div>
+        <button 
+          className="redirect-button"
+          onClick={() => window.open(buyUrl, '_blank')}
+        >
+          Click here if it doesn't open automatically
+        </button>
       </div>
-      <div className="navigation">
-        <button onClick={onBack}>Back (Esc)</button>
-      </div>
+      <button className="back-button" onClick={onBack}>Back</button>
     </div>
   );
 }
