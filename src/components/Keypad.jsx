@@ -10,6 +10,22 @@ function Keypad() {
     window.dispatchEvent(event);
   };
 
+  const handleNavigation = (direction) => {
+    const event = new KeyboardEvent('keydown', {
+      key: `Arrow${direction}`,
+      bubbles: true
+    });
+    window.dispatchEvent(event);
+  };
+
+  const handleEnter = () => {
+    const event = new KeyboardEvent('keydown', {
+      key: 'Enter',
+      bubbles: true
+    });
+    window.dispatchEvent(event);
+  };
+
   const handleEscClick = () => {
     const event = new KeyboardEvent('keydown', {
       key: 'Escape',
@@ -36,23 +52,20 @@ function Keypad() {
   return (
     <div className="keypad">
       <div className="nav-buttons">
-        <button className="nav-btn up">▲</button>
+        <button className="nav-btn up" onClick={() => handleNavigation('Up')}>▲</button>
         <div className="nav-middle">
-          <button className="nav-btn left">◀</button>
-          <button className="nav-btn select">●</button>
-          <button className="nav-btn right">▶</button>
+          <button className="nav-btn left" onClick={() => handleNavigation('Left')}>◀</button>
+          <button className="nav-btn select" onClick={handleEnter}>●</button>
+          <button className="nav-btn right" onClick={() => handleNavigation('Right')}>▶</button>
         </div>
-        <button className="nav-btn down">▼</button>
+        <button className="nav-btn down" onClick={() => handleNavigation('Down')}>▼</button>
       </div>
       
       <div className="function-buttons">
-        <button className="fn-btn green">
+        <button className="fn-btn green" onClick={handleEnter}>
           <div className="led"></div>
         </button>
-        <button 
-          className="fn-btn red"
-          onClick={handleEscClick}
-        >
+        <button className="fn-btn red" onClick={handleEscClick}>
           <div className="led"></div>
         </button>
       </div>

@@ -295,4 +295,53 @@ body {
 /* Remove any conflicting styles */
 .status-bar-fixed {
   display: none;
+}
+
+.phone-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-areas:
+    ". up ."
+    "left middle right"
+    ". down .";
+  gap: 5px;
+}
+
+.phone-button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #2c2c2c;
+  background-color: #6b824f;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.phone-button.up {
+  grid-area: up;
+}
+
+.phone-button.down {
+  grid-area: down;
+}
+
+.phone-button.middle {
+  grid-area: middle;
+  background-color: #4a5d32;
+}
+
+.phone-button.red {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #8b0000;
+}
+
+.nokia-button.selected {
+  background-color: #4a5d32;
+  color: #fff;
+  border: 2px solid #2c2c2c;
 } 
