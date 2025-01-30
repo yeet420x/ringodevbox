@@ -29,11 +29,13 @@ function Interface() {
   const menuItems = [
     { icon: <img src={contractIcon} alt="Contract" className="menu-icon" />, label: 'Contract', component: Contract },
     { icon:<img src={buyIcon} alt="DexScreener" className="menu-icon" />, label: 'Buy', component: Buy },
+    { icon: <img src={snakeIcon} alt="Snake" className="menu-icon" />, label: 'Snake', component: Snake },
     { 
       icon: <img src={dexIcon} alt="DexScreener" className="menu-icon" />, 
       label: 'Chart', 
       component: Chart 
     },
+    
     { 
       icon: <img src={xIcon} alt="X" className="menu-icon" />, 
       label: 'X', 
@@ -44,7 +46,7 @@ function Interface() {
       label: 'Telegram', 
       component: Socials 
     },
-    { icon: <img src={snakeIcon} alt="Snake" className="menu-icon" />, label: 'Snake', component: Snake }
+    
   ];
 
   const handleEscape = () => {
