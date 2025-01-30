@@ -5,7 +5,9 @@ import nokiaGif from '../assets/nokia.gif';
 function LoadingScreen() {
   return (
     <div className="loading-screen">
-      <img src={nokiaGif} alt="Nokia Startup" className="nokia-startup" />
+      <div className="gif-container">
+        <img src={nokiaGif} alt="Nokia Startup" className="nokia-startup" />
+      </div>
     </div>
   );
 }

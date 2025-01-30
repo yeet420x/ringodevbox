@@ -1,0 +1,32 @@
+.tokenomics-screen {
+  width: 100%;
+  height: 100%;
+  background-color: #84a062;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.tokenomics-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.tokenomics-item {
+  font-family: monospace;
+  font-size: 8px;
+  color: #2c2c2c;
+  margin: 2px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tokenomics-label {
+  font-weight: bold;
+}
+
+.tokenomics-value {
+  text-align: right;
+} 

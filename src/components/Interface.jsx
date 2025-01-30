@@ -11,11 +11,17 @@ import tgIcon from '../assets/tg.svg';
 import dexIcon from '../assets/dexscreener.svg';
 
 function Interface() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(() => {
+    const saved = localStorage.getItem('menuIndex');
+    return saved ? parseInt(saved) : 0;
+  });
   const [currentScreen, setCurrentScreen] = useState('menu');
   const [previousScreen, setPreviousScreen] = useState([]);
   const [typingMode, setTypingMode] = useState(false);
   const [typedText, setTypedText] = useState('');
+  const [time, setTime] = useState('12:00');
+  const [signal, setSignal] = useState(4); // Signal strength 0-4
+  const [battery, setBattery] = useState(3); // Battery level 0-3
 
   const menuItems = [
     { icon: '📜', label: 'Contract', component: Contract },
@@ -49,8 +55,13 @@ function Interface() {
   };
 
   const handleKeyDown = (e) => {
+    // Don't handle keys if we're in the snake game
+    if (currentScreen === 'snake') {
+      return;
+    }
+
     if (e.key === 'Escape') {
-      e.preventDefault(); // Prevent default browser behavior
+      e.preventDefault();
       handleEscape();
       return;
     }
@@ -113,6 +124,23 @@ function Interface() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentScreen, activeIndex, typingMode]);
 
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      setTime(`${hours}:${minutes}`);
+    };
+    
+    updateTime();
+    const interval = setInterval(updateTime, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('menuIndex', activeIndex.toString());
+  }, [activeIndex]);
+
   const handleButtonClick = (direction) => {
     const event = { key: `Arrow${direction}` };
     handleKeyDown(event);
@@ -122,9 +150,17 @@ function Interface() {
     return (
       <div className="nokia-interface">
         <div className="status-bar">
-          <span className="signal">||||</span>
-          <span className="clock">12:00</span>
-          <span className="battery">███</span>
+          <div className="signal-strength">
+            {Array.from({ length: 4 }, (_, i) => (
+              <div key={i} className={`signal-bar ${i < signal ? 'active' : ''}`} />
+            ))}
+          </div>
+          <span className="time">{time}</span>
+          <div className="battery-indicator">
+            {Array.from({ length: 3 }, (_, i) => (
+              <div key={i} className={`battery-bar ${i < battery ? 'active' : ''}`} />
+            ))}
+          </div>
         </div>
         <div className="typing-screen">
           <div className="typed-text">{typedText}</div>
@@ -142,9 +178,17 @@ function Interface() {
     return CurrentComponent ? (
       <div className="nokia-interface">
         <div className="status-bar">
-          <span className="signal">||||</span>
-          <span className="clock">12:00</span>
-          <span className="battery">███</span>
+          <div className="signal-strength">
+            {Array.from({ length: 4 }, (_, i) => (
+              <div key={i} className={`signal-bar ${i < signal ? 'active' : ''}`} />
+            ))}
+          </div>
+          <span className="time">{time}</span>
+          <div className="battery-indicator">
+            {Array.from({ length: 3 }, (_, i) => (
+              <div key={i} className={`battery-bar ${i < battery ? 'active' : ''}`} />
+            ))}
+          </div>
         </div>
         <CurrentComponent onBack={handleBack} />
       </div>
@@ -155,9 +199,17 @@ function Interface() {
     <div className="interface-container">
       <div className="nokia-interface">
         <div className="status-bar">
-          <span className="signal">||||</span>
-          <span className="clock">12:00</span>
-          <span className="battery">███</span>
+          <div className="signal-strength">
+            {Array.from({ length: 4 }, (_, i) => (
+              <div key={i} className={`signal-bar ${i < signal ? 'active' : ''}`} />
+            ))}
+          </div>
+          <span className="time">{time}</span>
+          <div className="battery-indicator">
+            {Array.from({ length: 3 }, (_, i) => (
+              <div key={i} className={`battery-bar ${i < battery ? 'active' : ''}`} />
+            ))}
+          </div>
         </div>
         <div className="content">
           <header className="screen-title">Menu</header>

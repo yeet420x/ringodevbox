@@ -1,33 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import '../../styles/Chart.css';
 
 function Chart({ onBack }) {
-  const chartLinks = [
-    { name: 'Birdeye', url: 'https://birdeye.so' },
-    { name: 'DexScreener', url: 'https://dexscreener.com' }
-  ];
+  const [isLoading, setIsLoading] = useState(true);
+  const dexScreenerUrl = "https://dexscreener.com/solana/your-pair-address";
+
+  const handleOpenExternal = () => {
+    window.open(dexScreenerUrl, '_blank');
+  };
 
   return (
-    <div className="menu-screen">
-      <header className="screen-title">Chart</header>
-      <div className="content scrollable">
-        <div className="chart-list">
-          {chartLinks.map((chart) => (
-            <a 
-              key={chart.name}
-              href={chart.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="chart-item"
-            >
-              {chart.name}
-            </a>
-          ))}
-        </div>
+    <div className="chart-screen">
+      <div className="chart-container">
+        <iframe
+          src={dexScreenerUrl}
+          title="DEXScreener Chart"
+          className="dex-iframe"
+          onLoad={() => setIsLoading(false)}
+          onError={() => setIsLoading(true)}
+        />
+        {isLoading && (
+          <div className="chart-fallback">
+            <div className="chart-message">Loading chart...</div>
+            <button className="chart-external-btn" onClick={handleOpenExternal}>
+              Open in new tab
+            </button>
+          </div>
+        )}
       </div>
-      <div className="navigation">
-        <button onClick={onBack}>Back (Esc)</button>
-      </div>
+      <button className="back-button" onClick={onBack}>Back</button>
     </div>
   );
 }
