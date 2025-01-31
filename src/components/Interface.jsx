@@ -171,13 +171,7 @@ function Interface() {
   };
 
   const handleXClick = () => {
-    const xUrl = "https://x.com/nokiacoin";
-    try {
-      window.location.href = xUrl;
-    } catch (error) {
-      console.error('Failed to open X URL:', error);
-      alert('Please click here to open X: ' + xUrl);
-    }
+    setCurrentScreen('x');  // Changed to use menu component instead of direct navigation
   };
 
   if (typingMode) {
@@ -209,7 +203,7 @@ function Interface() {
       item => item.label.toLowerCase() === currentScreen
     )?.component;
 
-    return CurrentComponent ? (
+    return (
       <div className="nokia-interface">
         <div className="status-bar">
           <div className="signal-strength">
@@ -224,9 +218,14 @@ function Interface() {
             ))}
           </div>
         </div>
-        <CurrentComponent onBack={handleBack} />
+        {CurrentComponent && (
+          <CurrentComponent 
+            onBack={handleBack} 
+            type={currentScreen === 'x' ? 'X' : currentScreen === 'telegram' ? 'Telegram' : undefined}
+          />
+        )}
       </div>
-    ) : null;
+    );
   }
 
   return (

@@ -4,12 +4,18 @@ import '../../styles/Socials.css';
 
 function Socials({ onBack, type }) {
   const urls = {
-    X: "https://x.com/your-x-profile",
-    Telegram: "https://t.me/your-telegram"
+    X: "https://x.com/3310onsol",
+    Telegram: "https://t.me/3310onsol"
   };
 
   useEffect(() => {
-    window.open(urls[type], '_blank');
+    const socialUrl = urls[type];
+    try {
+      window.location.href = socialUrl;
+    } catch (error) {
+      console.error(`Failed to open ${type} URL:`, error);
+      alert(`Please click here to open ${type}: ` + socialUrl);
+    }
   }, [type]);
 
   return (
@@ -20,7 +26,15 @@ function Socials({ onBack, type }) {
         </div>
         <button 
           className="redirect-button"
-          onClick={() => window.open(urls[type], '_blank')}
+          onClick={() => {
+            const socialUrl = urls[type];
+            try {
+              window.location.href = socialUrl;
+            } catch (error) {
+              console.error(`Failed to open ${type} URL:`, error);
+              alert(`Please click here to open ${type}: ` + socialUrl);
+            }
+          }}
         >
           Click here if it doesn't open automatically
         </button>
