@@ -41,11 +41,7 @@ function Interface() {
       label: 'X', 
       component: Socials 
     },
-    { 
-      icon: <img src={tgIcon} alt="Telegram" className="menu-icon" />, 
-      label: 'Telegram', 
-      component: Socials 
-    },
+    
     
   ];
 
@@ -245,7 +241,7 @@ function Interface() {
           </div>
         </div>
         <div className="content">
-          <header className="screen-title">Menu</header>
+          <header className="screen-title"></header>
           <div className="menu-grid">
             {menuItems.map((item, index) => (
               <div 
