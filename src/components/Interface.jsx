@@ -147,7 +147,7 @@ function Interface() {
   };
 
   const handleBuyClick = () => {
-    const buyUrl = "https://pump.fun";
+    const buyUrl = "https://pump.fun/coin/6GaLZa1XU8NYJoDgqzKhkJuy5VjiBybZCxbTLUKxpump";
     try {
       window.location.href = buyUrl;
     } catch (error) {
