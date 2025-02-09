@@ -157,7 +157,7 @@ function Interface() {
   };
 
   const handleChartClick = () => {
-    const chartUrl = "https://dexscreener.com";
+    const chartUrl = "https://dexscreener.com/solana/6GaLZa1XU8NYJoDgqzKhkJuy5VjiBybZCxbTLUKxpump";
     try {
       window.location.href = chartUrl;
     } catch (error) {
