@@ -161,7 +161,7 @@ function Interface() {
       <div className="nokia-interface">
         {renderStatusBar()}
         <div className="content">
-          <header className="screen-title">RINGO'S DEV BOX</header>
+        
           <div className="menu-grid">
             {menuItems.map((item, index) => (
               <div 
