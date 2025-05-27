@@ -8,7 +8,7 @@ function PhoneContainer() {
     <div className="phone-container">
       <div className="phone-frame">
         <div className="speaker"></div>
-        <div className="nokia-brand">NOKIA</div>
+        <div className="nokia-brand">RINGO DEV BOX</div>
         <Screen />
         <Keypad />
       </div>

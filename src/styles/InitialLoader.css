@@ -55,7 +55,7 @@
   align-items: center;
 }
 
-.nokia-text {
+.brand-text {
   font-family: 'Nokia Cellphone FC', monospace;
   font-size: 80px;
   font-weight: bold;
@@ -67,7 +67,7 @@
   gap: 8px;
 }
 
-.nokia-text span {
+.brand-text span {
   display: inline-block;
   opacity: 0;
   transform: translateY(20px) scale(0.5);
@@ -75,24 +75,24 @@
   transition: all 0.5s ease-out;
 }
 
-.loader-content.glow .nokia-text {
+.loader-content.glow .brand-text {
   opacity: 1;
 }
 
-.loader-content.glow .nokia-text span {
+.loader-content.glow .brand-text span {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
-  animation: nokiaGlow 2s infinite alternate;
+  animation: brandGlow 2s infinite alternate;
 }
 
-.loader-content.glow .nokia-text span:nth-child(1) { transition-delay: 0.1s; }
-.loader-content.glow .nokia-text span:nth-child(2) { transition-delay: 0.2s; }
-.loader-content.glow .nokia-text span:nth-child(3) { transition-delay: 0.3s; }
-.loader-content.glow .nokia-text span:nth-child(4) { transition-delay: 0.4s; }
-.loader-content.glow .nokia-text span:nth-child(5) { transition-delay: 0.5s; }
+.loader-content.glow .brand-text span:nth-child(1) { transition-delay: 0.1s; }
+.loader-content.glow .brand-text span:nth-child(2) { transition-delay: 0.2s; }
+.loader-content.glow .brand-text span:nth-child(3) { transition-delay: 0.3s; }
+.loader-content.glow .brand-text span:nth-child(4) { transition-delay: 0.4s; }
+.loader-content.glow .brand-text span:nth-child(5) { transition-delay: 0.5s; }
 
-@keyframes nokiaGlow {
+@keyframes brandGlow {
   0% {
     color: #1a1a1a;
     text-shadow: 

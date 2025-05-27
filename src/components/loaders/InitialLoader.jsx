@@ -7,26 +7,27 @@ function InitialLoader({ onComplete }) {
   const [isGlowing, setIsGlowing] = useState(false);
 
   useEffect(() => {
-    // Define the NOKIA letter pattern
+    // Define the RINGO letter pattern
     const letterPattern = [
-      // N
+      // R
       { x: 5, y: 5 }, { x: 5, y: 6 }, { x: 5, y: 7 }, { x: 5, y: 8 },
-      { x: 6, y: 6 }, { x: 7, y: 7 },
-      { x: 8, y: 5 }, { x: 8, y: 6 }, { x: 8, y: 7 }, { x: 8, y: 8 },
-      // O
-      { x: 10, y: 5 }, { x: 10, y: 6 }, { x: 10, y: 7 }, { x: 10, y: 8 },
-      { x: 11, y: 5 }, { x: 11, y: 8 },
-      { x: 12, y: 5 }, { x: 12, y: 6 }, { x: 12, y: 7 }, { x: 12, y: 8 },
-      // K
-      { x: 14, y: 5 }, { x: 14, y: 6 }, { x: 14, y: 7 }, { x: 14, y: 8 },
-      { x: 15, y: 6 }, { x: 16, y: 5 }, { x: 16, y: 7 }, { x: 16, y: 8 },
+      { x: 6, y: 5 }, { x: 7, y: 5 },
+      { x: 7, y: 6 }, { x: 6, y: 6 },
+      { x: 6, y: 7 }, { x: 7, y: 8 },
       // I
-      { x: 18, y: 5 }, { x: 18, y: 6 }, { x: 18, y: 7 }, { x: 18, y: 8 },
-      // A
-      { x: 20, y: 8 }, { x: 20, y: 7 }, { x: 20, y: 6 }, { x: 20, y: 5 },
-      { x: 21, y: 5 }, { x: 22, y: 5 },
-      { x: 22, y: 6 }, { x: 22, y: 7 }, { x: 22, y: 8 },
-      { x: 21, y: 6 }
+      { x: 9, y: 5 }, { x: 9, y: 6 }, { x: 9, y: 7 }, { x: 9, y: 8 },
+      // N
+      { x: 11, y: 5 }, { x: 11, y: 6 }, { x: 11, y: 7 }, { x: 11, y: 8 },
+      { x: 12, y: 6 }, { x: 13, y: 7 },
+      { x: 14, y: 5 }, { x: 14, y: 6 }, { x: 14, y: 7 }, { x: 14, y: 8 },
+      // G
+      { x: 16, y: 5 }, { x: 16, y: 6 }, { x: 16, y: 7 }, { x: 16, y: 8 },
+      { x: 17, y: 5 }, { x: 18, y: 5 },
+      { x: 18, y: 7 }, { x: 17, y: 7 }, { x: 18, y: 8 },
+      // O
+      { x: 20, y: 5 }, { x: 20, y: 6 }, { x: 20, y: 7 }, { x: 20, y: 8 },
+      { x: 21, y: 5 }, { x: 21, y: 8 },
+      { x: 22, y: 5 }, { x: 22, y: 6 }, { x: 22, y: 7 }, { x: 22, y: 8 }
     ];
 
     const moveDots = () => {
@@ -53,7 +54,7 @@ function InitialLoader({ onComplete }) {
       if (moveDots()) {
         clearInterval(moveInterval);
       }
-    }, 100); // Faster dot movement (changed from 200 to 100)
+    }, 100); // Faster dot movement
 
     return () => {
       clearInterval(moveInterval);
@@ -77,12 +78,12 @@ function InitialLoader({ onComplete }) {
           ))}
         </div>
         <div className={`loader-content ${isGlowing ? 'glow' : ''}`}>
-          <div className="nokia-text">
-            <span>N</span>
-            <span>O</span>
-            <span>K</span>
+          <div className="brand-text">
+            <span>R</span>
             <span>I</span>
-            <span>A</span>
+            <span>N</span>
+            <span>G</span>
+            <span>O</span>
           </div>
         </div>
       </div>
