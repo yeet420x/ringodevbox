@@ -223,9 +223,13 @@ body {
 .screen-title {
   font-size: 10px;
   text-align: center;
-  padding: 2px;
+  padding: 4px 0;
+  margin: 4px 0;
   border-bottom: 1px solid #6b824f;
   text-transform: uppercase;
+  width: 100%;
+  position: relative;
+  background-color: #84a062;
 }
 
 .navigation-hints {
