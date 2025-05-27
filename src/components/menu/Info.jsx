@@ -39,6 +39,7 @@ function Info({ onBack }) {
   return (
     <div className="menu-screen">
       <div className="menu-content" ref={contentRef}>
+      <p className="menu-hint">Use ↑↓ arrows to scroll content</p>
         <h2>SKILLS & INFO</h2>
         <ul className="skills-list">
           <li>Frontend Development</li>
@@ -51,7 +52,7 @@ function Info({ onBack }) {
           <li>Database Management</li>
         </ul>
         <p className="menu-hint">Press ESC to go back</p>
-        <p className="menu-hint">Use ↑↓ arrows to scroll content</p>
+        
       </div>
     </div>
   );

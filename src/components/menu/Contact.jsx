@@ -39,6 +39,7 @@ function Contact({ onBack }) {
   return (
     <div className="menu-screen">
       <div className="menu-content" ref={contentRef}>
+      <p className="menu-hint">Use ↑↓ arrows to scroll content</p>
         <h2>CONTACT</h2>
         <div className="contact-list">
           <div className="contact-item">
@@ -55,7 +56,7 @@ function Contact({ onBack }) {
           </div>
         </div>
         <p className="menu-hint">Press ESC to go back</p>
-        <p className="menu-hint">Use ↑↓ arrows to scroll content</p>
+        
       </div>
     </div>
   );
