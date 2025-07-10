@@ -25,7 +25,12 @@ const Portfolio = ({ onBack }) => {
       github: 'https://github.com/yeet420x/yekuza',
       website: 'https://www.yekuza.xyz/'
     },
-
+    {
+      name: 'MoonSafe',
+      description: 'Satirical meme coin protection platform with live Solana token tracking and community-driven risk assessment.',
+      github: 'https://github.com/yeet420x/moonsafe',
+      website: 'https://www.moonsafe.online/'
+    },
 
     // Add more projects here
   ];
