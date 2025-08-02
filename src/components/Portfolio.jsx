@@ -31,6 +31,18 @@ const Portfolio = ({ onBack }) => {
       github: 'https://github.com/yeet420x/moonsafe',
       website: 'https://www.moonsafe.online/'
     },
+    {
+      name: 'GUTS Tracker',
+      description: 'Solana Token Holder Tracker - A comprehensive web application for tracking Solana token holders across multiple contracts and copy trader detector to detect whether your wallet is being copytraded or not with token gating and pay-per-use functionality.',
+      github: 'https://github.com/yeet420x/GUTS-TRACKER',
+      website: 'https://guts-tracker-front.vercel.app/'
+    },
+    {
+      name: 'Candle TV Mascot Creator',
+      description: 'A modern web application for creating and customizing Candle TV mascots with AI-powered generation capabilities.',
+      github: 'https://github.com/yeet420x/mascot',
+      website: 'https://mascot-omega.vercel.app/'
+    },
 
     // Add more projects here
   ];
